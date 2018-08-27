@@ -1,2 +1,0 @@
-# FormComponent
-Created with CodeSandbox
