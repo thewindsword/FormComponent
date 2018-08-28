@@ -64,6 +64,39 @@ const MySimplePicker = props => (
     <List.Item arrow="horizontal">{props.label}</List.Item>
   </Picker>
 );
+const MyDatePicker = props => (
+  <DatePicker
+    mode={props.mode}
+    title={props.title}
+    extra={props.extra}
+    value={props.value}
+    minDate={props.minDate}
+    maxDate={props.maxDate}
+    onChange={props.onChange}
+    onOk={props.onOk}
+    onDismiss={props.onDismiss}
+  >
+    <List.Item arrow="horizontal">{props.label}</List.Item>
+  </DatePicker>
+);
+const MyTextArea = props => (
+  <TextareaItem
+    title={props.title}
+    placeholder={props.placeholder}
+    value={props.value}
+    onChange={props.onChange}
+    onBlur={props.onBlur}
+    onFocus={props.onFocus}
+    autoHeight
+    count={props.count}
+  />
+);
+
+const SubmitButton = props => (
+  <button className="my-submit-button" type="submit" disabled={props.disabled}>
+    {props.children}
+  </button>
+);
 
 const MyErrorItem = props =>
   props.touched && props.errors ? (
@@ -92,10 +125,15 @@ const CheckboxWithError = HOCErrorInItem(MyCheckboxList, MyErrorItem);
 const RadioWithError = HOCErrorInItem(MyRadioList, MyErrorItem);
 const SimplePickerWithError = HOCErrorInItem(MySimplePicker, MyErrorItem);
 const InputWithError = HOCErrorInItem(MyInputItem, MyErrorItem);
+const DatePickerWithError = HOCErrorInItem(MyDatePicker, MyErrorItem);
+const TextAreaWithError = HOCErrorInItem(MyTextArea, MyErrorItem);
 
 export {
   CheckboxWithError,
   RadioWithError,
   SimplePickerWithError,
-  InputWithError
+  InputWithError,
+  DatePickerWithError,
+  TextAreaWithError,
+  SubmitButton
 };

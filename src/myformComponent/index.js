@@ -6,7 +6,10 @@ import "antd-mobile/dist/antd-mobile.min.css";
 import {
   InputWithError,
   SimplePickerWithError,
-  RadioWithError
+  RadioWithError,
+  SubmitButton,
+  DatePickerWithError,
+  TextAreaWithError
 } from "./formComponents";
 
 const InnerForm = ({
@@ -71,14 +74,35 @@ const InnerForm = ({
           ]}
         />
       ) : null}
+      <DatePickerWithError
+        mode="date"
+        title="Select Birthday"
+        extra="select birthday"
+        label="Birthday"
+        minDate={new Date(1900, 1, 1, 0, 0, 0)}
+        maxDate={new Date()}
+        onChange={val => setFieldValue("birthday", val)}
+        onOk={val => setFieldTouched("birthday", true)}
+        onDismiss={val => setFieldTouched("birthday", true)}
+        value={values.birthday}
+        touched={touched.birthday}
+        errors={errors.birthday}
+      />
+      <List>
+        <TextAreaWithError
+          title="Address"
+          placeholder="Input Address"
+          value={values.address}
+          onChange={val => setFieldValue("address", val)}
+          onBlur={val => setFieldTouched("address", true)}
+          onFocus={() => setFieldTouched("address", true)}
+          touched={touched.address}
+          errors={errors.address}
+          count={50}
+        />
+      </List>
       <WhiteSpace />
-      <button
-        className="my-submit-button"
-        type="submit"
-        disabled={isSubmitting}
-      >
-        Submit
-      </button>
+      <SubmitButton disabled={isSubmitting}>Submit</SubmitButton>
     </WingBlank>
   </form>
 );
@@ -104,6 +128,10 @@ const MyForm = withFormik({
     if (!values.isPeople) {
       errors.isPeople = "Required";
     }
+    if (!values.birthday) {
+      errors.birthday = "Required";
+    }
+
     return errors;
   },
   // Submission handler
