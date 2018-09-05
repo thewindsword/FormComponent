@@ -149,6 +149,8 @@ const MyForm = withFormik({
       setSubmitting,
       setErrors /* setValues, setStatus, and other goodies */
     });
+
+    setSubmitting(false);
   }
 })(InnerForm);
 
